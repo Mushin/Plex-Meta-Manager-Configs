@@ -1,0 +1,37 @@
+#######################
+##     Templates     ##
+#######################
+
+templates:
+  IMDB_rating:
+    overlay:
+      name: <<overlay_name>>
+    plex_search:
+      all:
+        audience_rating.gte: <<gte>>
+        audience_rating.lt: <<lt>>
+    optional:
+      - gte
+      - lt
+  rating_score:
+    overlay:
+      name: <<overlay_name>>
+      horizontal_offset: <<horiz>>
+      vertical_offset: 1445
+      font: DejaVuSans.ttf
+      font_size: 55
+    plex_all: true
+
+#######################
+##     Overlays      ##
+#######################
+
+overlays:
+  IMDB_R:
+    template: {name: IMDB_rating, lt: 7.0}
+  IMDB_Y:
+    template: {name: IMDB_rating, gte: 7.0, lt: 8.0}
+  IMDB_G:
+    template: {name: IMDB_rating, gte: 8.0}
+  text(audience_rating#):
+    template: {name: rating_score, horiz: 112}
